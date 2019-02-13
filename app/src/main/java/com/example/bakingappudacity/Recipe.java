@@ -26,6 +26,13 @@ public class Recipe implements Parcelable {
     private int servings;
     private ArrayList<String> ingredients;
 
+    public ArrayList<String> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(ArrayList<String> ingredients) {
+        this.ingredients = ingredients;
+    }
 
     public int getServings() {
         return servings;
@@ -34,7 +41,6 @@ public class Recipe implements Parcelable {
     public void setServings(int servings) {
         this.servings = servings;
     }
-
 
     public String getImage() {
         return image;
@@ -55,6 +61,7 @@ public class Recipe implements Parcelable {
         name = in.readString();
         image = in.readString();
         servings = in.readInt();
+        ingredients = in.readArrayList(Recipe.class.getClassLoader());
     }
 
     @Override
