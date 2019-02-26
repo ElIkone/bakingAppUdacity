@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class Recipe implements Parcelable {
     public static final  Creator<Recipe> CREATOR = new Creator<Recipe>() {
         @Override
-        public Recipe createFromParcel(Parcel source) {
-            return null;
+        public Recipe createFromParcel(Parcel in) {
+            return new Recipe(in);
         }
 
         @Override
