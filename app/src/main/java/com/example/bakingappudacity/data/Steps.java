@@ -1,4 +1,4 @@
-package com.example.bakingappudacity;
+package com.example.bakingappudacity.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;

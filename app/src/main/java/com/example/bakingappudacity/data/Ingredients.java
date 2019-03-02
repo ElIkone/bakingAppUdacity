@@ -1,8 +1,7 @@
-package com.example.bakingappudacity;
+package com.example.bakingappudacity.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.google.gson.annotations.SerializedName;
 
 public class Ingredients implements Parcelable {
     public static final Parcelable.Creator<Ingredients> CREATOR
@@ -15,6 +14,7 @@ public class Ingredients implements Parcelable {
             return new Ingredients[size];
         }
     };
+
 
     private int quantity;
     private String measure;

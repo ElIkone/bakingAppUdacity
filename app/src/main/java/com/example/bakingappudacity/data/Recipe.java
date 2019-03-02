@@ -1,10 +1,11 @@
-package com.example.bakingappudacity;
+package com.example.bakingappudacity.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Recipe implements Parcelable {
     public static final  Creator<Recipe> CREATOR = new Creator<Recipe>() {
@@ -24,13 +25,22 @@ public class Recipe implements Parcelable {
     private String name;
     private String image;
     private int servings;
-    private ArrayList<String> ingredients;
+    private List<Ingredients> ingredients = null;
+    private List<Steps> steps = null;
 
-    public ArrayList<String> getIngredients() {
+    public List<Steps> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(List<Steps> steps) {
+        this.steps = steps;
+    }
+
+    public List<Ingredients> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(ArrayList<String> ingredients) {
+    public void setIngredients(List<Ingredients> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -61,7 +71,8 @@ public class Recipe implements Parcelable {
         name = in.readString();
         image = in.readString();
         servings = in.readInt();
-        ingredients = in.readArrayList(Recipe.class.getClassLoader());
+        ingredients = in.createTypedArrayList(Ingredients.CREATOR);
+        steps = in.createTypedArrayList(Steps.CREATOR);
     }
 
     @Override
@@ -75,6 +86,8 @@ public class Recipe implements Parcelable {
         parcel.writeString(name);
         parcel.writeString(image);
         parcel.writeInt(servings);
+        parcel.writeTypedList(ingredients);
+        parcel.writeTypedList(steps);
     }
 
     public void setId(int id) {
